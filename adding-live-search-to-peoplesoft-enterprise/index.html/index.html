@@ -1,0 +1,414 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Adding Live Search to PeopleSoft Enterprise - @rmanalan</title>
+  <meta name="author" content="Rich Manalang">
+
+  
+  <meta name="description" content="In the past week I&#8217;ve been playing around with PeopleSoft&#8217;s built-in search engine (Verity) to come up with a better search experience &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://manalang.com/adding-live-search-to-peoplesoft-enterprise">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="@rmanalan" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">@rmanalan</a></h1>
+  
+    <h2>rich manalang</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:manalang.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Adding Live Search to PeopleSoft Enterprise</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-02-01T00:00:00-08:00" pubdate data-updated="true">Feb 1<span>st</span>, 2006</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content">In the past week I&#8217;ve been playing around with PeopleSoft&#8217;s built-in search engine (Verity) to come up with a better search experience for users.  Riding on the wave of Google Suggest a lot of people have implemented a &#8220;live&#8221; search feature on their sites.  So, I decided to sprinkle a little AJAX on top of PeopleSoft and build the same feature for Enterprise 8.4 and above.  Check it out&#8230;
+
+
+
+The most unbelievable thing about how I implemented live search on PeopleSoft is that I didn&#8217;t customize any delivered code.  None.  This was possible because of <a href="http://monkeygrease.org">Monkeygrease</a>.  Monkeygrease allows me to &#8220;inject&#8221; JavaScript/CSS/HTML into a page before it&#8217;s delivered to the browser.  On the back end, I created a simple PeopleSoft iScript to carry out the search and return the results in a <code>&lt;ul&gt;</code> tag&#8230; I thought about using JSON, but then that would have added more complexity to the JavaScript.
+
+Here&#8217;s the iScript:
+
+<div class="CodeRay">
+  <div class="code"><pre>[WEBLIB_CSS_LSCR.ISCRIPT1.FieldFormula]
+Function FormatPath(&amp;Path As string) Returns string
+   Local number &amp;i, &amp;begin, ?
+   Local string &amp;stringToSearch, ?
+   &amp;stringToSearch = ?
+   &amp;begin = Find(&quot;{&quot;, &amp;stringToSearch);
+   While &amp;begin &gt; 0
+      &amp;end = Find(&quot;}&quot;, &amp;stringToSearch);
+      &amp;stringToCut = Substring(&amp;stringToSearch, &amp;begin, &amp;end - &amp;begin + 1);
+      &amp;stringToSearch = Substitute(&amp;stringToSearch, &amp;stringToCut, &quot;&quot;);
+      &amp;begin = Find(&quot;{&quot;, &amp;stringToSearch);
+      If &amp;i = 1000 Then /* Safety break */
+         Break;
+      Else
+         &amp;i = &amp;i + 1;
+      End-If;
+   End-While;
+   Return Substitute(&amp;stringToSearch, &quot;.&quot;, &quot; &gt; &quot;);
+End-Function;
+
+Function IScript_doSearch()
+   Local string &amp;q, &amp;node, &amp;partialUrl, &amp;fullUrl, ?
+   Local number ?
+   Local ApiObject &amp;portal, &amp;query, &amp;results, &amp;result, ?
+   Local Request &amp;Request = %Request;
+   Local Response &amp;Response = %Response;
+
+   REM If no query text avail, return nothing;
+   &amp;q = &amp;Request.GetParameter(&quot;q&quot;);
+   If &amp;q = &quot;&quot; Then
+      Return;
+   End-If;
+
+   &amp;portal = %Session.GetPortalRegistry();
+   &amp;portal.Open(%Portal);
+   &amp;query = &amp;portal.GetSearchQuery();
+   &amp;query.Language = %Language;
+   &amp;query.QueryText = &amp;q | &quot;*&quot;;
+   &amp;query.RequestedFields = &quot;CONTENT_PROVIDER,URL,SCORE&quot;;
+   &amp;query.SortSpecifications = &quot;SCORE desc&quot;;
+   &amp;results = &amp;query.Execute(1, 20);
+
+   If &amp;results  Null Then
+      &amp;result = &amp;results.First();
+   Else
+      &amp;result = Null;
+   End-If;
+
+   &amp;resCounter = 1;
+   While &amp;result  Null
+      &amp;node = &amp;result.SearchFields.ItemByName(&quot;CONTENT_PROVIDER&quot;).Value;
+      &amp;partialUrl = &amp;result.SearchFields.ItemByName(&quot;URL&quot;).Value;
+      &amp;fullUrl = &amp;portal.GetAbsoluteContentURL(&amp;node, &amp;partialUrl);
+      &amp;cref = &amp;portal.FindCrefByURL(&amp;fullUrl);
+      If &amp;cref  Null Then
+         If &amp;cref.Authorized And
+               &amp;cref.isVisible And
+               (&amp;cref.URLType = &quot;UPGE&quot; Or
+                  &amp;cref.URLType = &quot;UEXT&quot; Or
+                  &amp;cref.URLType = &quot;USCR&quot; Or
+                  &amp;cref.URLType = &quot;UGEN&quot;) Then
+            &amp;resultsHtml = &amp;resultsHtml | GetHTMLText(HTML.CSS_LIVE_SEARCH_RESULT, &amp;cref.Label, &amp;cref.AbsolutePortalURL, FormatPath(&amp;cref.Path), &amp;cref.Description);
+            If &amp;resCounter = 8 Then
+               Break;
+            End-If;
+            &amp;resCounter = &amp;resCounter + 1;
+         End-If;
+      End-If;
+      &amp;result = &amp;results.Next();
+   End-While;
+   &amp;portal.close();
+
+   If &amp;resultsHtml  &quot;&quot; Then
+      &amp;Response.Write(GetHTMLText(HTML.CSS_LIVE_SEARCH, &amp;resultsHtml));
+   End-If;
+End-Function;</pre></div>
+</div>
+
+
+There are two functions in this iScript, FormatPath and IScript_doSearch.  FormatPath just formats the path location of the search result item (where it&#8217;s stored in the portal registry).  The IScript_doSearch is what calls the Verity API to carry out the search.  In this function, I filter each result through the portal registry to see if the user has access to the item.  This iScript performs amazingly well.
+
+The iScript above references some HTML objects&#8230; here they are:
+
+<div class="CodeRay">
+  <div class="code"><pre>[HTML Object: CSS_LIVE_SEARCH]
+&lt;ul&gt;
+%bind(:1)
+&lt;/ul&gt;</pre></div>
+</div>
+
+
+<div class="CodeRay">
+  <div class="code"><pre>[HTML Object: CSS_LIVE_SEARCH_RESULT]
+&lt;li&gt;
+<a title="%bind(:4)" target="_top">%Bind(:1)</a>
+&lt;div&gt;%bind(:3)&lt;/div&gt;
+&lt;/li&gt;</pre></div>
+</div>
+
+
+The the only other things I needed to do was code up the JavaScript and CSS to insert into the page.  You can view those here: <a href="http://manalang.com/wp-content/uploads/2006/02/live-search.js">live-search.js</a> and <a href="http://manalang.com/wp-content/uploads/2006/02/live-search.css">live-search.css</a>. I then &#8220;injected&#8221; these files via this Monkeygrease rule:
+
+<div class="CodeRay">
+  <div class="code"><pre>&lt;rule enabled=&quot;true&quot; name=&quot;Live Search&quot; url-pattern=&quot;(/psp/?([^/]*)?/?([^/]*)?/?([^/]*)?/(h/|s/WEBLIB_EO_PE_LN\.ISCRIPT1\.FieldFormula\.IScript_EPPLN_INFRAME)|/psc/?([^/]*)?/?([^/]*)?/?([^/]*)?/s/WEBLIB_PT_NAV\.ISCRIPT1\.FieldFormula\.IScript_PT_NAV_INFRAME_TITLE).*&quot; insert-at=&quot;head-end&quot;&gt;
+    &lt;![CDATA[
+    &lt;script type=&quot;text/javascript&quot; src=&quot;http://some.server.com/monkeygrease/lib/prototype.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://some.server.com/monkeygrease/live-search.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;
+    &lt;script type=&quot;text/javascript&quot; language=&quot;javascript&quot; src=&quot;http://some.server.com/monkeygrease/live-search.js&quot;&gt;&lt;/script&gt;
+    ]]&gt;
+&lt;/rule&gt;</pre></div>
+</div>
+
+
+As you can see from these Monkeygrease rules, the <a href="http://prototype.conio.net/">prototype.js</a> library is required.  I used this library to simplify the code&#8230; and it did just that.
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rich Manalang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-02-01T00:00:00-08:00" pubdate data-updated="true">Feb 1<span>st</span>, 2006</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://manalang.com/adding-live-search-to-peoplesoft-enterprise/index.html" data-via="rmanalan" data-counturl="http://manalang.com/adding-live-search-to-peoplesoft-enterprise/index.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/happy-birthday-ta-da-list/index.html" title="Previous Post: Happy Birthday Ta-Da List!">&laquo; Happy Birthday Ta-Da List!</a>
+      
+      
+        <a class="basic-alignment right" href="/iand8217m-that-egghead/index.html" title="next Post: I&#8217;m that egghead">I&#8217;m that egghead &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/homewood/index.html">Homewood</a>
+      </li>
+    
+      <li class="post">
+        <a href="/i-really-need-a-corona/index.html">I really need a Corona</a>
+      </li>
+    
+      <li class="post">
+        <a href="/i-need-a-corona/index.html">I need a Corona</a>
+      </li>
+    
+      <li class="post">
+        <a href="/day-3-in-paradise/index.html">Day 3 in Paradise</a>
+      </li>
+    
+      <li class="post">
+        <a href="/summer-in-homewood/index.html">Summer in Homewood</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Github Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/manalang">@manalang</a> on Github
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'manalang',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmanalan", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmanalan" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @rmanalan</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2011 - Rich Manalang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'manalang';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,646 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>@rmanalan</title>
+  <meta name="author" content="Rich Manalang">
+
+  
+  <meta name="description" content="One annoyance I have with Digg is that their RSS feed links point back to their site rather than the story it points to. I assume it&#8217;s because &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://manalang.com/blog/page/14">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="@rmanalan" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">@rmanalan</a></h1>
+  
+    <h2>rich manalang</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:manalang.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/greasemonkey-script-digg-redirect/index.html">Greasemonkey Script: Digg Redirect</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-01-09T00:00:00-08:00" pubdate data-updated="true">Jan 9<span>th</span>, 2006</time>
+        
+         | <a href="/greasemonkey-script-digg-redirect/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">One annoyance I have with <a href="http://www.digg.com">Digg</a> is that their <a href="http://www.digg.com/rss/index.xml">RSS feed</a> links point back to their site rather than the story it points to.  I assume it&#8217;s because they want the traffic.  So, here&#8217;s <a href="http://manalang.com/greasemonkey/diggredirect.user.js">a super simple Greasemonkey script</a> that will automatically redirect you to the real story page/site when you navigate to any Digg story.
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/google-pack/index.html">Google Pack</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-01-06T00:00:00-08:00" pubdate data-updated="true">Jan 6<span>th</span>, 2006</time>
+        
+         | <a href="/google-pack/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><a href="http://pack.google.com">Hot off the press!</a>&nbsp; Looks like the GOOG folks enabled <a href="http://pack.google.com/pack/pack_installer.html">this URL</a> right before Larry Page&#8217;s keynote at CES.<p /><br />Technorati Tags: <a href="http://technorati.com/tag/google" rel="tag">google</a>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/loading-external-javascript-libraries-in-grea/index.html">Loading External JavaScript Libraries in Greasemonkey</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-01-04T00:00:00-08:00" pubdate data-updated="true">Jan 4<span>th</span>, 2006</time>
+        
+         | <a href="/loading-external-javascript-libraries-in-grea/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">I&#8217;m working on a new Greasemonkey script and with the recent discovery of <a href="http://simon.incutio.com/archive/2005/12/16/json">cross-domain access to JSON data</a>, I figured the same technique would be a good way to bring in JavaScript libraries that can be useful in your Greasemonkey scripts. The only hitch is that you have to trust the host of the libraries you want to bring in&#8230; else it&#8217;s possible to <a href="http://ajaxian.com/archives/cross-site-phishing">cause harm</a> to your users.
+
+Here&#8217;s an example of how I can load the <a href="http://prototype.conio.net/">Prototype</a> library.  The key thing here is that you have to wait for the external JavaScript file to load before you can use it. I do this by recursively checking if a variable is available (see the waitForProto function).&nbsp; Once the library is loaded, I continue with the rest of my script.
+
+<div class="CodeRay">
+  <div class="code"><pre>var p = unsafeWindow;
+function waitForProto() {
+    if (typeof p.Prototype=='undefined')
+        // set to check every 100 milliseconds if the libary has loaded
+        window.setTimeout(waitForProto, 100);
+    else
+        // call the rest of your code
+}
+function loadProto() {
+        // dynamically creates a script tag
+        var proto = document.createElement('script');
+        proto.type = 'text/javascript';
+        proto.src = 'http://prototype.conio.net/dist/prototype-1.3.1.js';
+        document.getElementsByTagName('head')[0].appendChild(proto);
+        waitForProto();
+}
+window.addEventListener('load', loadProto(), false);</pre></div>
+</div>
+
+
+By the way, after the library is loaded, you can access the &#8220;p&#8221; object to gain access to the Prototype objects.  &#8220;p&#8221; is a reference to Greasemonkey&#8217;s <a href="http://greasemonkey.mozdev.org/authoring.html#unsafeWindow">unsafeWindow</a> object.
+
+Has anyone figured out a better way to do this?
+
+Technorati Tags: <a href="http://technorati.com/tag/greasemonkey" rel="tag">greasemonkey</a>, <a href="http://technorati.com/tag/json" rel="tag">json</a>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/deliciouspopular-feed-and-bloglines/index.html">del.icio.us/popular Feed and Bloglines</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-01-04T00:00:00-08:00" pubdate data-updated="true">Jan 4<span>th</span>, 2006</time>
+        
+         | <a href="/deliciouspopular-feed-and-bloglines/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">Ever since del.icio.us went down last month due to a <a href="http://blog.del.icio.us/blog/2005/12/power_failure.html">power failure</a>, the <a href="http://del.icio.us/popular/">del.icio.us/popular</a> <a href="http://del.icio.us/rss/popular/">feed</a> I subscribe to with <a href="http://www.bloglines.com">Bloglines</a> has been broken&#8230; anyone else experiencing this?&nbsp; I know Bloglines has had <a href="http://www.wingedpig.com/archives/000218.html">problems of its own</a> in December, but I don&#8217;t understand why such a popular feed would be busted for such a long time.&nbsp; When I looked at del.icio.us&#8217; actuall feed, all seems fine, but when added to Bloglines, no items ever show up.<p />So, I decided to fix it myself using <a href="http://www.feedburner.com">Feedburner</a>.&nbsp; I just created my own <a href="http://feeds.feedburner.com/manalang/delicious/popular">&#8220;cleansed&#8221; del.icio.us/popular feed</a> and voila, everything works in Bloglines again.&nbsp; I never thought of using Feedburner as a proxy to fix others&#8217; feeds until today.&nbsp; Cool!<p /><br />Technorati Tags: <a href="http://technorati.com/tag/feeds" rel="tag">feeds</a>, <a href="http://technorati.com/tag/bloglines" rel="tag">bloglines</a>, <a href="http://technorati.com/tag/delicious" rel="tag">delicious</a>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/json-and-yahoo-screencast/index.html">JSON and Yahoo! Screencast</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-12-16T00:00:00-08:00" pubdate data-updated="true">Dec 16<span>th</span>, 2005</time>
+        
+         | <a href="/json-and-yahoo-screencast/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">Those who know about <a href="http://www.crockford.com/JSON/">JSON</a> know about the big productivity gain over of parsing raw XML.  In today&#8217;s world of AJAX, I think JSON is a disruptive technology.  It opens the the world of mashups to so many more people (especially when you couple it with <a href="http://bob.pythonmac.org/archives/2005/12/05/remote-json-jsonp/">new techniques to get around the browser cross-domain scripting policy</a>).  That&#8217;s why I think <a href="http://developer.yahoo.net/common/json.html">Yahoo&#8217;s decision</a> to JSON enable their web services is a big deal.
+
+However, there are a lot of people who just don&#8217;t grok JSON (here&#8217;s <a href="http://simon.incutio.com/archive/2005/12/16/json#comment8">one</a>).  I was one of them on the outset.  Just with any new technology or technique, sometimes the way it&#8217;s introduced to the world can easily cause it to wither away into the long list of unused but interesting tools.  So, now that I grok JSON and it&#8217;s power, I figure I&#8217;d share <a href="http://manalang.com/wp-content/yahoo-json-example.htm">a short and simple screencast</a> on how web developers can easily access JSON data in their JavaScript.
+
+Enjoy!
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/wordpress-20-upgrade-killed-my-feeds/index.html">Wordpress 2.0 Upgrade Killed My Feeds</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-12-04T00:00:00-08:00" pubdate data-updated="true">Dec 4<span>th</span>, 2005</time>
+        
+         | <a href="/wordpress-20-upgrade-killed-my-feeds/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">Sorry for the short interruption of service for those who subscribe to my feed.  After upgrading to WP 2.0 beta 1, the <a href="http://orderedlist.com/articles/wordpress-feedburner-plugin/">Feedburner plugin</a> no longer worked.  I had to hack my .htaccess to get everything working again.  Looks like WP2 is doing some interesting magic to create the permalink structure since the .htaccess file is a lot smaller in WP2.
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/wow-that-was-quick/index.html">Wow That Was Quick!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-11-07T00:00:00-08:00" pubdate data-updated="true">Nov 7<span>th</span>, 2005</time>
+        
+         | <a href="/wow-that-was-quick/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">Shortly after announcing <a href="http://monkeygrease.org">Monkeygrease</a>, it&#8217;s already posted on <a href="http://www.ajaxian.com/archives/2005/11/monkeygrease_gr_1.html">Ajaxian</a>!  Cool&#8230; thanks Ben and Dion!
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/introducing-monkeygrease-the-server-side-grea/index.html">Introducing Monkeygrease: The Server-Side Greasemonkey</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-11-07T00:00:00-08:00" pubdate data-updated="true">Nov 7<span>th</span>, 2005</time>
+        
+         | <a href="/introducing-monkeygrease-the-server-side-grea/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">For those who follow this blog, I&#8217;m sorry for the sparce activity.  I&#8217;ve been working on something big&#8230; and now I feel like it&#8217;s ready to unleash&#8230; so here it is&#8230;
+
+[[posterous-content:iCeEpqtgjvfzoavpvkvb]] Monkeygrease is a very simple servlet filter that will allow a web developer to inject JavaScript, CSS or other elements within a web page. This concept was inspired by the popular <a href="http://greasemonkey.mozdev.org/">Greasemonkey</a> extension for the Mozilla Firefox browser. Greasemonkey empowers a user to alter and enhance any web page by allowing them to execute user scripts (JavaScript) on any page.
+
+Monkeygrease serves the same purpose as Greasemonkey, however, instead of being a client-side solution, Monkeygrease is a server-side solution. This allows all your users to benefit from enhancements you deploy to your site through Monkeygrease. You might be wondering, &#8220;why not enhance the underlying web page or web application?&#8221; Consider all of the packaged web applications you have deployed. Many of these web applications are not that easy to enhance. Some web applications are just not conducive to being customized. Also, some of these web applications are &#8220;black-boxed&#8221; or closed source products that just can&#8217;t be customized. Other products are just too complicated and require expert knowledge to carry out interface based customizations.
+
+With Monkeygrease, you can forego customizations to the underlying web application. Instead, you can rely on the power of JavaScript and Cascading Style Sheets as a means to customizing a web application&#8217;s interface. A few examples of interface enhancements may include:
+
+* Changing the look and feel of a web application
+* Adding DHTML/AJAX features/effects on your site
+* Adding WYSIWYG editing to any textarea field on your site
+* Enhance pages by contextually adding content from external providers
+* Fix usability issues on any page
+
+For more details, visit the <a href="http://monkeygrease.org">Monkeygrease website</a>.
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/im-flocked/index.html">I&#8217;m Flocked</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-10-24T00:00:00-07:00" pubdate data-updated="true">Oct 24<span>th</span>, 2005</time>
+        
+         | <a href="/im-flocked/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">Just checking out <a href="http://www.flock.com">flock</a>.
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/iand8217m-flocked/index.html">I&#8217;m Flocked</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-10-24T00:00:00-07:00" pubdate data-updated="true">Oct 24<span>th</span>, 2005</time>
+        
+         | <a href="/iand8217m-flocked/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Just testing out <a href="http://www.flock.com/">Flock</a>.<br /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/15/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/13/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/homewood/index.html">Homewood</a>
+      </li>
+    
+      <li class="post">
+        <a href="/i-really-need-a-corona/index.html">I really need a Corona</a>
+      </li>
+    
+      <li class="post">
+        <a href="/i-need-a-corona/index.html">I need a Corona</a>
+      </li>
+    
+      <li class="post">
+        <a href="/day-3-in-paradise/index.html">Day 3 in Paradise</a>
+      </li>
+    
+      <li class="post">
+        <a href="/summer-in-homewood/index.html">Summer in Homewood</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Github Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/manalang">@manalang</a> on Github
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'manalang',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmanalan", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmanalan" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @rmanalan</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2011 - Rich Manalang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'manalang';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

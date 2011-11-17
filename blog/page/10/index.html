@@ -1,0 +1,661 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>@rmanalan</title>
+  <meta name="author" content="Rich Manalang">
+
+  
+  <meta name="description" content="[cross posted from http://theappslab.com/2008/11/19/looks-good-works-well/] Last night, I was lucky enough to see Bill Scott (of Yahoo Design Pattern &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://manalang.com/blog/page/10">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="@rmanalan" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">@rmanalan</a></h1>
+  
+    <h2>rich manalang</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:manalang.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/looks-good-works-well/index.html">&#8220;Looks Good, Works Well&#8221;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-19T00:00:00-08:00" pubdate data-updated="true">Nov 19<span>th</span>, 2008</time>
+        
+         | <a href="/looks-good-works-well/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">[cross posted from <a href="http://theappslab.com/2008/11/19/looks-good-works-well/">http://theappslab.com/2008/11/19/looks-good-works-well/</a>]
+
+Last night, I was lucky enough to see <a href="http://looksgoodworkswell.blogspot.com/">Bill Scott</a> (of <a href="http://developer.yahoo.com/ypatterns/">Yahoo Design Pattern Library</a>, <a href="http://developer.yahoo.com/yui/">YUI</a>, <a href="http://openrico.org">OpenRico</a>, <a href="http://netflix.com">Netflix</a> fame) present at my local Ruby user group.  He shared his thoughts about the successful design patterns that have defined today&#8217;s web.  As someone who enjoys brilliantly designed &#8220;things&#8221; including web apps and sites, I found his talk very interesting.
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/multi-model-solr-search-in-rails/index.html">Multi-Model Solr Search in Rails</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-14T00:00:00-08:00" pubdate data-updated="true">Nov 14<span>th</span>, 2008</time>
+        
+         | <a href="/multi-model-solr-search-in-rails/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">A few of the JRuby on Rails apps I run use <a href="http://acts-as-solr.rubyforge.org/">acts_as_solr</a>.  Turns out that the prefered search solutions in Rails today are <a href="http://ts.freelancing-gods.com/">Thinking Sphinx</a> and <a href="http://locomotivation.com/2008/07/23/simple-ruby-on-rails-full-text-search-using-xapian">Xapian</a>, neither of which I&#8217;ve ever tried before&#8230; maybe on my next project.  Anyway, acts_as_solr is pretty useable, however, I&#8217;ve always been stumped with how to perform queries across ActiveRecord models.  Turns out that acts_as_solr has a method called &#8221;<a href="http://acts-as-solr.rubyforge.org/classes/ActsAsSolr/ClassMethods.html#M000004">multi_solr_search</a>&#8221; which performs queries across models.  However, it&#8217;s not very well documented and there&#8217;s not a whole lot of information in the intertubes.  So, here&#8217;s how I got my unified site search to work:
+
+[code lang=&#8221;ruby&#8221;]
+  # search_controller.rb: default execution searches multiple models.  If a scope param is provided
+  # it will search only that model.  multi_solr_search can return two two different formats, the object
+  # name and id, or the actual object.  If you&#8217;re query returns a lot of results, you don&#8217;t want to load
+  # up every single object.  The code below loads the object name and id then just loads the object
+  # for the current paginated group.  This is using will_paginate.
+  def all
+    if params[:scope] and [&#8220;UserProfile&#8221;, &#8220;Idea&#8221;, &#8220;Question&#8221;, &#8220;Group&#8221;].include?(params[:scope].classify)
+      scope = params[:scope].classify
+      models = [scope]
+    else
+      scope = &#8220;UserProfile&#8221;
+      models = [Idea, Question, Group]
+    end
+
+    # execute solr multi model search based on the scope selected above
+    solr_results = scope.constantize.multi_solr_search(params[:q], 
+                                                 :models => models, 
+                                                 :results_format => :ids,
+                                                 :limit => 1000).docs.compact
+    @total = solr_results.size
+    solr_results = solr_results.map {|m| r = m.fetch(&#8220;id&#8221;).split(&#8220;:&#8221;)}
+    per_page = 10
+    page = params[:page] || 1
+
+    # determine array indices that are to be included in the current paginated group
+    first_idx = (page.to_i > 1) ? ((page.to_i - 1) * per_page) : 0
+    last_idx =  (first_idx + per_page.to_i - 1)
+    last_idx = last_idx  page, :per_page => per_page)
+  end
+[/code]
+
+I&#8217;d love to see if someone could clean this up more.  Any takers?
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/rails-excluding-plugins-from-loading/index.html">Rails: Excluding Plugins From Loading</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-04T00:00:00-08:00" pubdate data-updated="true">Nov 4<span>th</span>, 2008</time>
+        
+         | <a href="/rails-excluding-plugins-from-loading/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">I&#8217;m doing some refactoring of one of our Rails apps and saw something like this:
+
+[code lang=&#8221;ruby&#8221;]
+  if RAILS_ENV == &#8216;test&#8217;
+    config.load_paths two <a href="http://www.jjbarrett.net/archives/plugin-ordering-and-exclusion-in-rails-20">different</a> solutions, but neither of them worked on Rails 2.1.x.  So, here&#8217;s what I came up with:
+
+[code lang=&#8221;ruby&#8221;]
+  # Load all plugins with init.rb&#8230; :all does the same thing, but doesn&#8217;t allow
+  # us to exclude plugins from different environments.
+  config.plugins = Dir[ &#8220;#{RAILS_ROOT}/vendor/plugins/*&#8221; ].map { |p|
+    File.basename(p) if File.exist?(File.join(p,&#8221;init.rb&#8221;))}.compact
+
+  if RAILS_ENV == &#8220;test&#8221;
+    config.load_paths += Dir[ &#8220;#{RAILS_ROOT}/vendor/testing_gems/**&#8221;].map do |dir|
+      File.directory?( lib = &#8220;#{dir}/lib&#8221; ) ? lib : dir
+    end
+    config.plugins -= [ :acts_as_solr, :&#8221;rails-footnotes&#8221; ]
+  end
+[/code]
+
+Notice how I also separate out the gems we use for testing &#8211; no need to load those in other environments.
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/job-scheduling-with-jruby-and-rails/index.html">Job Scheduling With JRuby and Rails</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-24T00:00:00-07:00" pubdate data-updated="true">Oct 24<span>th</span>, 2008</time>
+        
+         | <a href="/job-scheduling-with-jruby-and-rails/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><a href="http://www.jkraemer.net/tags/quartz">Job scheduling with JRuby and Rails</a>. For the past year, I&#8217;ve looked at several background schedulers for JRuby on Rails apps (Bj, BackgroundRB, Rufus Scheduler, etc.) and have come up with solutions that have been sub-optimal.  Looks like I missed this post from Jens Krämer running down some other options including using the popular <a href="http://www.opensymphony.com/quartz/">Quartz scheduler</a> in Java.  I also didn&#8217;t know that Goldspike had it&#8217;s own built in servlet for handling simple background tasks.
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/twine-we-organize-that-shit/index.html">Twine: âWe Organize That Shit.â</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-22T00:00:00-07:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2008</time>
+        
+         | <a href="/twine-we-organize-that-shit/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><a href="http://www.techcrunch.com/2008/10/21/twine-we-organize-that-shit/">Twine: “We Organize That Shit.”</a> &#8220;You use Twine to collect, find some shit, and share that shit with people you know. Twine ties it all together by topic, so you can have that shit in one place and it is easy for you to find it. You know what I’m sayin’?&#8221;
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/jason-frieds-talk-at-the-business-of-software/index.html">Jason Fried&#8217;s Talk at the Business of Software Conference (September 2008) - (37signals)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-21T00:00:00-07:00" pubdate data-updated="true">Oct 21<span>st</span>, 2008</time>
+        
+         | <a href="/jason-frieds-talk-at-the-business-of-software/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><a href="http://www.37signals.com/svn/posts/1329-my-talk-at-the-business-of-software-conference-september-2008">Jason Fried&#8217;s talk at the Business of Software conference (September 2008) - (37signals)</a>. Excellent talk about how to build apps, a strong brand, and a good company from Jason Fried at 37Signals.
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/washington-wire-wsjcom-joe-the-plumbers-15-mi/index.html">Washington Wire - WSJ.com : Joe the Plumberâs 15 Minutes of Fame</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-16T00:00:00-07:00" pubdate data-updated="true">Oct 16<span>th</span>, 2008</time>
+        
+         | <a href="/washington-wire-wsjcom-joe-the-plumbers-15-mi/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><a href="http://blogs.wsj.com/washwire/2008/10/16/joe-the-plumbers-15-minutes-of-fame/">Washington Wire - WSJ.com : Joe the Plumber’s 15 Minutes of Fame</a>.
+<blockquote class="posterous_medium_quote">But things weren’t all sunny for Joe as the national press began digging into the details of his life. It turns out he owes taxes to the state of Ohio amounting to $1,182.98. He’s not licensed as a plumber and has been working without one.
+
+Not to mention, his name’s not even Joe! (Full name: Samuel Joseph Wurzelbacher.) His name is apparently misspelled on the Lucas County Board of Elections database, which raised questions over whether he may be disqualified to vote in November anyway.
+
+Further, even if he buys the plumbing company as he wants to do, he still wouldn’t earn anywhere near enough money to face a tax hike under the Obama plan. In fact, he’d qualify for a variety of tax cuts.</blockquote>
+Hilarious&#8230; so much for McCain &#8220;going to work for Joe&#8221; campaign.
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/les-misbarack-0/index.html">Les Misbarack</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-15T00:00:00-07:00" pubdate data-updated="true">Oct 15<span>th</span>, 2008</time>
+        
+         | <a href="/les-misbarack-0/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">Must see&#8230; classic&#8230; <a href="http://andrewsullivan.theatlantic.com/the_daily_dish/2008/09/les-misbarack.html"><em>Les Misbarack</em></a>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/integrating-applications-with-opensso/index.html">Integrating Applications With OpenSSO</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-15T00:00:00-07:00" pubdate data-updated="true">Oct 15<span>th</span>, 2008</time>
+        
+         | <a href="/integrating-applications-with-opensso/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><a href="http://developers.sun.com/identity/reference/techart/app-integration.html">Integrating Applications With OpenSSO</a>. Good overview of how OpenSSO works (hint: pretty much the same way other web based SSO systems work).  Includes an example of a Rails app using OpenSSO.
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/drooling-all-over-my-mbp-looking-at-the/index.html">Drooling All Over My MBP Looking at the &#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-14T00:00:00-07:00" pubdate data-updated="true">Oct 14<span>th</span>, 2008</time>
+        
+         | <a href="/drooling-all-over-my-mbp-looking-at-the/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">Drooling all over my MBP looking at the new MacBook line up. Sadly, can&#8217;t justify the expense right now.
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/11/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/9/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/homewood/index.html">Homewood</a>
+      </li>
+    
+      <li class="post">
+        <a href="/i-really-need-a-corona/index.html">I really need a Corona</a>
+      </li>
+    
+      <li class="post">
+        <a href="/i-need-a-corona/index.html">I need a Corona</a>
+      </li>
+    
+      <li class="post">
+        <a href="/day-3-in-paradise/index.html">Day 3 in Paradise</a>
+      </li>
+    
+      <li class="post">
+        <a href="/summer-in-homewood/index.html">Summer in Homewood</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Github Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/manalang">@manalang</a> on Github
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'manalang',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmanalan", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmanalan" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @rmanalan</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2011 - Rich Manalang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'manalang';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,422 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Markdown Text Filtering for PeopleSoft - @rmanalan</title>
+  <meta name="author" content="Rich Manalang">
+
+  
+  <meta name="description" content="I&#8217;ve been working on some new tricks for my session at Oracle Open World. A lot of the things I&#8217;ve come up with incorporate Web 2.0 buzz &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://manalang.com/markdown-text-filtering-for-peoplesoft">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="@rmanalan" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">@rmanalan</a></h1>
+  
+    <h2>rich manalang</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:manalang.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Markdown Text Filtering for PeopleSoft</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-09-09T00:00:00-07:00" pubdate data-updated="true">Sep 9<span>th</span>, 2005</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content">I&#8217;ve been working on some new tricks for my session at <a href="http://www.oracle.com/openworld/index.html">Oracle Open World</a>.  A lot of the things I&#8217;ve come up with incorporate Web 2.0 buzz word compliant features into the PeopleSoft Portal&#8230; stuff like Ajax/DHTML rich client type of features.  I&#8217;ve also been trying to come up with simple, no-fuss, high-value customizations that our customers can easily implement on their own.  One of them is adding Markdown text filtering to the PeopleSoft Portal.
+
+<a href="http://daringfireball.net/projects/markdown/">Markdown</a> is a&#8230;
+
+<blockquote class="posterous_short_quote">&#8220;&#8230;text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).&#8221;</blockquote>
+
+With Markdown, we can write this:
+
+      * Bullet 1<br />
+      * Bullet 2<br />
+      * Bullet 3<p>
+
+to get this:
+
+<div class="CodeRay">
+  <div class="code"><pre>&lt;ul&gt;
+        &lt;li&gt;Bullet 1&lt;/li&gt;
+        &lt;li&gt;Bullet 2&lt;/li&gt;
+        &lt;li&gt;Bullet 3&lt;/li&gt;
+&lt;/ul&gt;</pre></div>
+</div>
+
+
+This is one of the many things you can do with Markdown.  For more examples, visit the <a href="http://daringfireball.net/projects/markdown/syntax">Markdown Syntax page</a>.
+
+Markdown is nothing new and has actually been around for since 2003.  It was created by the &#8220;Mac Pundit&#8221; <a href="http://daringfireball.net/">Jon Gruber</a>.  I classify Markdown (and other text filtering tools like it&#8230; i.e., <a href="http://textism.com/tools/textile/">Textile</a>) as a middle-of-the-road solution between editing HTML by hand and using a WYSIWYG editor.  Markdown makes it easy to generate HTML by writting plain-text documents with an intuitively simple text formatting syntax.
+
+So what value does this bring to your PeopleSoft application?  Well, in the case of the PeopleSoft Portal, you can have editors edit content without having to know HTML.  Earlier releases of the portal did not include a WYSIWYG HTML editor like version 8.9 does, so Markdown is a good alternative for your content authors/editors.
+
+<strong>Let&#8217;s look at an example</strong>
+
+Before we start, to allow for simple and easy integration of Markdown within PeopleSoft, we should use the <a href="http://www.petebevin.com/archives/2005/01/03/markdown_in_java.html">MarkdownJ</a> library.  MarkdownJ is a Java port of Markdown.  PeopleSoft can natively call Java within PeopleCode and so utilizing MarkdownJ makes our life a lot easier.  To use MarkdownJ, you&#8217;ll need the <a href="http://prdownloads.sourceforge.net/markdownj/markdownj-1.0.2b1-0.2.0.jar?download">MarkdownJ jar file</a> and <a href="http://www.eng.lsu.edu/mirrors/apache/ant/binaries/apache-ant-1.6.5-bin.zip">Apache Ant</a>.  After you&#8217;ve downloaded Apache Ant, extract the contents then look for the ant.jar file under the lib directory.  Copy both the markdown.jar and ant.jar to your PS_HOME/class directory on your PeopleSoft appserver.  You&#8217;ll need to cycle your appserver in order to load them into the JVM&#8217;s memory.
+
+Once you have the libraries placed on the appserver, all it takes to call MarkdownJ from within PeopleCode is this:
+
+<div class="CodeRay">
+  <div class="code"><pre>Local JavaObject &amp;markdown = CreateJavaObject(&quot;com.petebevin.markdown.MarkdownProcessor&quot;);
+Local string &amp;transformedText = &amp;markdown.markdown(&amp;someText);</pre></div>
+</div>
+
+
+You can take this little bit of code and apply it to any text based process you want.  In our example, however, we&#8217;ll look at applying Markdown to Pagelet Wizard.
+
+Pagelet Wizard is PeopleSoft&#8217;s tool for creating pagelets (or the more widely used term, portlets).  It&#8217;s a simple three step process:
+
+# Acquire data (Data Types/Sources)
+# Transform data (Data Transformations)
+# Publish pagelet/portlet
+
+Pagelet Wizard comes with several data types/sources out of the box.  One of these is called the HTML data type.  With this data type, a user can create a portlet by simply writting HTML within Pagelet Wizard then publishing the contents to a portlet.  We&#8217;re going to clone the HTML data type as a &#8220;Text&#8221; data type.  To do this, go to
+
+<code>Portal Administration &gt; Pagelets &gt; Pagelet Wizard &gt; Define Data Types &gt; Add</code>
+
+Define your Data Type according to the graphic below:
+
+<img src="/images/media_httpmanalangcomwpcontentpwdatatypesmlgif_eFhhAFaptCCzpDy.gif" alt="Markdown Text Filtering for PeopleSoft" />
+
+One thing you won&#8217;t be able to specify in the picture above is the CSS_MARKDOWN display format.  We&#8217;ll have to come back to that later.  Data Types define the source of the data you want to acquire for your portlet.  When you create a new Tata Type, you&#8217;ll need to specify the PeopleCode application class you want to use that will source the data.  In this case, our data type is similar to the HTML data type in that we&#8217;re sourcing the data directly from user input within Pagelet Wizard in the form of a text area.  So, we&#8217;re going to just refer to the app class for the HTML data source.
+
+Next, we need to define a Transform Type.  Navigate to:
+
+<code>Portal Administration &gt; Pagelets &gt; Pagelet Wizard &gt; Define Transform Types &gt; Add</code>
+
+Again, create a new Transformation Type with the following properties:
+
+<img src="/images/media_httpmanalangcomwpcontentpwtransformtypesmlgif_ohiixjbFDlzpwts.gif" alt="Markdown Text Filtering for PeopleSoft" />
+
+A Transformation Type defines a transformation processor.  In this case, our transformation processor is MarkdownJ.  A Transformation Type requires an app class that will take your Data Type output and convert it to the format you want.  In this case, we will have to roll up our sleeves and write a little PeopleCode.  For your convenience, here&#8217;s <a href="http://manalang.com/wp-content/CSS_RLM_PW_MARKDOWN_TRANSFORM.zip">a project</a> you can import into your database.  And just for reference, here&#8217;s what the code in the app class looks like (I cloned the PTPPB_PAGELET:Transformer:PassthroughTransformer class to build the Markdown transformer):
+
+<div class="CodeRay">
+  <div class="code"><pre>import PTPPB_PAGELET:UTILITY:*;
+import PTPPB_PAGELET:Transformer:*;
+import PTPPB_PAGELET:*;
+
+/**
+  * Transformer that performs a Markdown transform.
+  */
+class MarkdownTransformer extends PTPPB_PAGELET:Transformer:Transformer
+   method MarkdownTransformer(&amp;ID_param As string);
+   method execute(&amp;pageletID As string) Returns string;
+   method Clone() Returns PTPPB_PAGELET:Transformer:Transformer;
+end-class;
+
+/**
+  * Constructor.
+  *
+  * @param id_param ID of this object.  Should be unique.
+  */
+method MarkdownTransformer
+   /+ &amp;ID_param as String +/
+   %Super = create PTPPB_PAGELET:Transformer:Transformer(&amp;ID_param);
+end-method;
+
+/**
+  * Calls MarkdownJ to process Markdown filtering
+  *
+  * @param pageletID ID of the pagelet being executed.
+  */
+method execute
+   /+ &amp;pageletID as String +/
+   /+ Returns String +/
+   /+ Extends/implements PTPPB_PAGELET:Transformer:Transformer.execute +/
+   Local JavaObject &amp;markdown = CreateJavaObject(&quot;com.petebevin.markdown.MarkdownProcessor&quot;);
+   Local string &amp;transformedText = &amp;markdown.markdown(%This.DataToTransform.Value);
+   Return ?
+end-method;
+
+/**
+  * Make an exact copy of this object.
+  *
+  * @return Text Exact copy of this object
+  */
+method Clone
+   /+ Returns PTPPB_PAGELET:Transformer:Transformer +/
+   /+ Extends/implements PTPPB_PAGELET:Transformer:Transformer.Clone +/
+   Return create PTPPB_PAGELET:Transformer:PassthroughTransformer(%This.ID);
+end-method;</pre></div>
+</div>
+
+
+Lastly, you&#8217;ll need to define a new Display Format.  Navigate to:
+
+<code>Portal Administration &gt; Pagelets &gt; Pagelet Wizard &gt; Define Display Formats &gt; Add</code>
+
+<img src="/images/media_httpmanalangcomwpcontentpwdisplayformatssmlgif_ivjrhbJFyzxwbiG.gif" alt="Markdown Text Filtering for PeopleSoft" />
+
+A Display Format is a subclass of a Transformation Type.  For example, an XSL Transformation Type can have a number of Display Types.  A few delivered Display Types for XSL are chart, list, table, etc.  In our case, we will only have one Display Type with Markdown.
+
+Once you&#8217;ve define the Transformation Type and the Display Format, go back into your Markup Data Type page and add the Markup Display Format.  The list of Display Formats in the Data Type page allows you to apply other Display Format/Transformation Types to a data source.
+
+Once you&#8217;ve done all of that, you can now create a new text based pagelet by selecting the &#8220;Text&#8221; Data Type.  When you get to step 4, select Markdown.  At step 5 you&#8217;ll see your text after the Markdown transformation is applied.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rich Manalang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-09-09T00:00:00-07:00" pubdate data-updated="true">Sep 9<span>th</span>, 2005</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://manalang.com/markdown-text-filtering-for-peoplesoft/index.html" data-via="rmanalan" data-counturl="http://manalang.com/markdown-text-filtering-for-peoplesoft/index.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/history-lesson-for-today/index.html" title="Previous Post: History Lesson for Today">&laquo; History Lesson for Today</a>
+      
+      
+        <a class="basic-alignment right" href="/peoplesoft-servlet-directives/index.html" title="next Post: PeopleSoft Servlet Directives">PeopleSoft Servlet Directives &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/homewood/index.html">Homewood</a>
+      </li>
+    
+      <li class="post">
+        <a href="/i-really-need-a-corona/index.html">I really need a Corona</a>
+      </li>
+    
+      <li class="post">
+        <a href="/i-need-a-corona/index.html">I need a Corona</a>
+      </li>
+    
+      <li class="post">
+        <a href="/day-3-in-paradise/index.html">Day 3 in Paradise</a>
+      </li>
+    
+      <li class="post">
+        <a href="/summer-in-homewood/index.html">Summer in Homewood</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Github Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/manalang">@manalang</a> on Github
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'manalang',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmanalan", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmanalan" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @rmanalan</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2011 - Rich Manalang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'manalang';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

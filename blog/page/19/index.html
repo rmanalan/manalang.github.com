@@ -1,0 +1,681 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>@rmanalan</title>
+  <meta name="author" content="Rich Manalang">
+
+  
+  <meta name="description" content="Update: I&#8217;ve just posted a newer version of this plugin below. This newer version fixes issues with WordPress installations that don&#8217;t &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://manalang.com/blog/page/19">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="@rmanalan" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">@rmanalan</a></h1>
+  
+    <h2>rich manalang</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:manalang.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/wordpress-plugin-condensed-content-for-date-a/index.html">WordPress Plugin: Condensed Content for Date and Category Archives</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-06-20T00:00:00-07:00" pubdate data-updated="true">Jun 20<span>th</span>, 2004</time>
+        
+         | <a href="/wordpress-plugin-condensed-content-for-date-a/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><em><strong>Update:</strong> I&#8217;ve just posted a newer version of this plugin below.  This newer version fixes issues with WordPress installations that don&#8217;t use the permalinks feature or have custom permalinks structures.</em>
+
+On <a href="http://manalang.com/archives/2004/05/24/movable-type-to-wordpress-switch">my old MT weblog</a>, my monthly and category archives only displayed the first 30 words of an entry in order to prevent large date or category archive pages.  I wanted to implement that feature on this weblog but couldn&#8217;t find a way to do it with the delivered template tags, so instead, I wrote a plugin to do just that.  <a href="http://manalang.com/archives/category/blogging/wordpress/">Here&#8217;s an example of a condensed category page</a>.
+
+<a href="http://manalang.com/wp-content/condensed_content.txt" title="Condensed Content v0.93">Condensed Content v0.93</a>
+
+Download the file above to your wp-content/plugins directory, rename it to condensed_content.php. Then within the WordPress Plugin admin inteface, activate the plugin.
+
+This plugin applies a filter to <code>the_content()</code> which will trim the post entry to the set number of words.  The number of words to display is configured in the plugin code itself &#8211; the variable is called <code>$cut_at</code>.  On top of trimming the post entry, it also strips any HTML tags that may be in the post entry.
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/looking-for-a-net-web-service/index.html">Looking for a .NET Web Service?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-06-18T00:00:00-07:00" pubdate data-updated="true">Jun 18<span>th</span>, 2004</time>
+        
+         | <a href="/looking-for-a-net-web-service/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">Here&#8217;s a handy tip&#8230; If you&#8217;re looking for a .NET web service, <a href="http://www.fuckinggoogleit.com/">just google it</a>! If you append a search query by &#8220;filetype:asmx&#8221; (.NET&#8217;s default file type for web services), you&#8217;ll get a bunch of .NET web services related to your query. Here are some examples:
+
+* <a href="http://www.google.com/search?hl=en&amp;lr=lang_en&amp;ie=UTF-8&amp;safe=off&amp;c2coff=1&amp;q=zipcode+filetype%3Aasmx&amp;btnG=Search">Zipcode</a>
+* <a href="http://www.google.com/search?hl=en&amp;lr=lang_en&amp;ie=UTF-8&amp;safe=off&amp;c2coff=1&amp;q=weather+filetype%3Aasmx&amp;btnG=Search">Weather</a>
+* <a href="http://www.google.com/search?sourceid=mozclient&amp;ie=utf-8&amp;oe=utf-8&amp;q=stock+quote+filetype%3Aasmx">Stock Quotes</a>
+* <a href="http://www.google.com/search?hl=en&amp;lr=lang_en&amp;ie=UTF-8&amp;safe=off&amp;c2coff=1&amp;q=dilbert+filetype%3Aasmx&amp;btnG=Search">Dilbert</a>
+
+You get the point.
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/xslts-for-rss-and-atom-feeds/index.html">XSLTs for RSS and Atom Feeds</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-06-17T00:00:00-07:00" pubdate data-updated="true">Jun 17<span>th</span>, 2004</time>
+        
+         | <a href="/xslts-for-rss-and-atom-feeds/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">Just in case anyone out there is ever looking for examples of an XSLT to transform an RSS or Atom feed to HTML, here they are.  I&#8217;ve had a difficult time finding simple examples on the web in the past.  These are pretty straight forward examples that can be extended for your use.
+
+* <a href="http://manalang.com/wp-content/rss09x.xsl">RSS 0.91-0.93 XSLT</a>
+* <a href="http://manalang.com/wp-content/rss1.xsl">RSS 1.0 XSLT</a>
+* <a href="http://manalang.com/wp-content/rss2.xsl">RSS 2.0 XSLT</a>
+* <a href="http://manalang.com/wp-content/atom03.xsl">Atom 0.3 XSLT</a>
+
+Enjoy!
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/do-birds-sleep-at-night/index.html">Do Birds Sleep at Night?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-06-16T00:00:00-07:00" pubdate data-updated="true">Jun 16<span>th</span>, 2004</time>
+        
+         | <a href="/do-birds-sleep-at-night/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">There I was, 2AM, wide-awake.  Last night might have been my worst attempt at sleep.  You see, for a while now, I have had a hard time getting a decent night of sleep.  They say that on average, most people get 1 to 1 1/2 hours of deep sleep per night &#8211; the part of our sleep cycle that matters the most.  Last night, I got none.
+
+My sleep deprivation is due to a combination of really annoying factors.  The first and most aggravating part is the noise.  It&#8217;s bad enough that I&#8217;m a light sleeper, but coupled with our bedroom being on the front part of our house facing a street with double yellow lines makes it a lot worse.  It&#8217;s not that we live on a boulevard or a major intersection or even in front of a highway &#8211; it&#8217;s not that busy of a street, but the fact is, we do get a handful of vehicles that drive by at insanely odd hours of the early morning.  Some of these cars are of the type that like to make noise &#8211; you know, the ones with the large tailpipes lowered to the ground.  I suppose this is one of the drawbacks of living in a sub-urban city.  We&#8217;ve thought about getting double-paned windows to block out the noise, but since it&#8217;s not a house we plan to stay in too long, we can&#8217;t justify the steep expense of upgrading our windows, even just a few windows in our bedroom.
+
+Another factor to my sleep issue is our bed.  It was a fine mattress when I was single, but with two people on it, it&#8217;s hardly comfortable when one of us is tossing and turning trying desperately to catch those zzzz&#8217;s.  Needless to say, we&#8217;re now in the market for a good quality mattress and are looking for recommendations.  Last weekend, we visited our local <a href="http://www.duxbed.com/">Duxiana</a> store and instantly fell in love.  We both wanted to stay over at the store for a night of sleep.  However, the bed we adored so much also comes with a very lofty price tag, over $4,000 USD.  It seems insane to pay that much for a bed.  However, since the day we tried the Dux bed, I&#8217;ve been seeking out ways to convince ourselves that it&#8217;s worth the expense; after all, we spend a third of our lives sleeping.  <a href="http://www.epinions.com/content_81830841988">One review I&#8217;ve read on epinions.com</a> said that if we are willing to spend tens of thousands of dollars for a vehicle we&#8217;re going to end up replacing in 5-10 years, isn&#8217;t the expense of a decent bed that&#8217;s going to guarantee you quality sleep for 20 years or more justified?  After thinking of it that way, I&#8217;m convinced that good quality sleep is priceless.
+
+So, back to my original story&#8230; 2AM, lying on my back, wide-awake and I hear birds chirping.  What gives?  I thought birds only chirp in the morning or during the day.  These birds were chirping just as if the sun was just coming out.  This begs the question, do birds sleep at night? At all?
+
+It&#8217;s a good thing that lack of sleep doesn&#8217;t prevent me from coming up with deep and profound questions like this.  Sometimes, I think that my best work is done with less sleep.  I used to think that sleep was a waste of time.  There have been sleep deprivation studies performed over the years, but none have ever proved that theory.
+
+Anyway, can anyone answer this question for me&#8230; do birds sleep?
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/yahoo-mail-strikes-back-at-google-gmail/index.html">Yahoo! Mail Strikes Back at Google Gmail</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-06-15T00:00:00-07:00" pubdate data-updated="true">Jun 15<span>th</span>, 2004</time>
+        
+         | <a href="/yahoo-mail-strikes-back-at-google-gmail/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">[[posterous-content:pbvnhdijzuuozwwakqFa]]
+When I checked my <a href="http://mail.yahoo.com">Yahoo! Mail</a> this morning, I got a surprise email from Yahoo! saying that my email account has been improved:
+
+*  Increased storage capacity  from your current level to 100MB
+* Increase in total message size to 10MB
+* A streamlined interface that&#8217;s even easier to use
+
+That&#8217;s not all.  I use SBC Yahoo! for broadband, so instead of a 100MB upgrade, I get a whopping 2GBs!  What the hell am I going to do with 2GBs of mail storage.  I&#8217;m the type who likes to clean my email out regularly &#8211; just a habit.  Surely, this is Yahoo!&#8217;s response to <a href="http://gmail.google.com">Google&#8217;s Gmail 1GB email service</a>.
+
+I also have Gmail account which I really have no use for at this point.  I&#8217;ve had my Yahoo! Mail account since 1994.  To switch now, doesn&#8217;t make a lot of sense.
+
+Anyway, I&#8217;ve got three Gmail invites available.  If you want one, put in a comment.
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/bringing-down-the-house/index.html">Bringing Down the House</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-06-10T00:00:00-07:00" pubdate data-updated="true">Jun 10<span>th</span>, 2004</time>
+        
+         | <a href="/bringing-down-the-house/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">[[posterous-content:AkwqEEelygdrvHhptkvE]]<a href="http://www.amazon.com/exec/obidos/ASIN/0743249992/qid%3D1086070017/sr%3D2-1/manalangcom-20"><strong>Bringing Down the House: The Inside Story of Six M.I.T. Students Who Took Vegas for Millions</strong></a>
+
+Cindy got me this book right before our trip to Tahoe last week.  Wow&#8230; what a great story!  Brings back memories of when my friends and I would make trips to Vegas, Reno, and Lake Tahoe to gamble.  I wasn&#8217;t much of a gambler back then (nor am I today) &#8211; it was more of a bachelor&#8217;s habit than anything else.
+
+Ben Mezrich, the author, writes about <em>&#8220;The Inside Story of Six M.I.T. Students Who Took Vegas for Millions.&#8221;</em>  Although this is a non-fiction, it certainly reads like fiction.  Double lives, private investigators, backroom stories to make your skin crawl, the VIP life, and lots of money on the table make for a great Hollywood movie.  This book is like <a href="http://oceans11.warnerbros.com/cmp/main.html">Ocean&#8217;s 11</a> mixed with  <a href="http://www.abeautifulmind.com/">A Beautiful Mind</a> and <a href="http://www.imdb.com/title/tt0110478/">Maverick</a> all in one.  Definitely a good read if you&#8217;re looking for a little action.
+
+At the end of the book, Kevin Lewis (the main character &#8211; I doubt that&#8217;s his real name), wrote an essay about <em>&#8220;How to Count Cards and Beat Vegas.&#8221;</em>  The card counting technique they used may have been developed by mathematicians and game theorists, but the actual practice of the technique is rather simple.  It&#8217;s how well a player executes the technique without being noticed by the casino staff that will determine how successful one is at the blackjack table.  This essay is a good addition to the book for those who are interested in the details.
+
+Definitely worth a read.
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/mt-tallac/index.html">Mt. Tallac</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-06-08T00:00:00-07:00" pubdate data-updated="true">Jun 8<span>th</span>, 2004</time>
+        
+         | <a href="/mt-tallac/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">One of our goals <a href="http://manalang.com/archives/2004/06/01/homewood-bound">on our vacation last week</a> was to hike up <a href="http://www.tahoeadventuresports.com/peakindex/south/mounttallac.htm">Mt. Tallac</a>.  In October last year, we made an attempt to summit, but ended up turning back 4.8 miles into it (at Gilmore Lake) &#8211; just ran out of time.  So, last week, we were highly determined to make it up to the 9,732 feet summit of Mt. Tallac.
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/homewood-bound-0/index.html">Homewood Bound</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-05-31T00:00:00-07:00" pubdate data-updated="true">May 31<span>st</span>, 2004</time>
+        
+         | <a href="/homewood-bound-0/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><img src="/images/media_httpimagesamazoncomimagesP074324999201THUMBZZZjpg_aotbIhdslCrpczG.jpg" alt="Homewood Bound" />Time for my real Memorial Day extended weekend to start.  We&#8217;re headed up to <a href="http://maps.yahoo.com/py/maps.py?Pyt=Tmap&amp;&amp;csz=Homewood+CA+&amp;Get%A0Map=Get+Map">Homewood</a> for a little R&amp;R.  It&#8217;ll be nice to be disconnected for a while.  I&#8217;m beginning to feel a little <a href="http://avc.blogs.com/a_vc/2004/05/blogging_is_an_.html">too addicted to blogs</a> &#8211; reading and writing.  On this trip, I hope to do nothing but:
+
+* wake up
+* eat breakfast
+* read the paper
+* go for a run or bike
+* eat lunch
+* take a nap
+* maybe go <a href="http://www.geocaching.com/about/">geocaching</a>
+* hike up <a href="http://kevingong.com/Hiking/TallacFromLilyLake.html">Mt. Tallac</a>
+* play with the <a href="http://manalang.com/archives/2003/06/10/the_truman_show_part_i">dog</a>
+* eat diner
+* sleep&#8230; lots
+
+That&#8217;s it.  No e-mail.  No internet.  No weblogs.
+
+[[posterous-content:kvxivFHxkldkHtbrmxcp]]I also plan to catch up on some <a href="http://www.newyorker.com/">New Yorker</a> issues and also read <a href="http://www.amazon.com/exec/obidos/ASIN/0743249992/qid%3D1086070017/sr%3D2-1/manalangcom-20">Bringing Down the House: The Inside Story of Six M.I.T. Students Who Took Vegas for Millions</a>.  I&#8217;m not much of a gambler, but when Cindy and I were in Vegas a few weeks ago for work, I played the craps table and multiplied our money by six times in less than an hour&#8230; not bad for someone who doesn&#8217;t really gamble.
+
+Anyway, I hope it&#8217;s a slow week in the blogosphere.  It&#8217;s always a drag having to catch up after you&#8217;ve been gone for a while.
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/this-site-is-brokenfixed-on-safari/index.html">This Site Is BrokenFixed on Safari</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-05-27T00:00:00-07:00" pubdate data-updated="true">May 27<span>th</span>, 2004</time>
+        
+         | <a href="/this-site-is-brokenfixed-on-safari/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><img src="/images/media_httpmanalangcomwpcontent40152thumbpng_jFEukEcIdBJyFtp.png" alt="This Site is BrokenFixed on Safari" /><em><strong>Update:</strong> Fixed it.  Had to do with the nav bar (home, about, and search) clashing with the floating menu.  Instead of tweaking it, I moved it inside of the menu which seems more logical anyway.  So much for giving out a reward.</em>
+
+
+[[posterous-content:wbkyuGeCGGlxrbpfImas]]<a href="http://www.w-a-s-a-b-i.com/">Alex</a> wrote in to tell me that this site does not render properly on Safari.  I don&#8217;t have a Mac so, I spent a few minutes trying to debug the problem using <a href="http://www.danvine.com/icapture/">iCapture</a>, but was not able to fix it.
+
+Any Mac users out there who know what&#8217;s causing the problem?  I might have to rethink this redesign if I can&#8217;t fix this.  Any takers out there who can fix this?  A handsome reward awaits.
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/wordpress-plugin-time-since/index.html">WordPress Plugin: Time Since</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-05-24T00:00:00-07:00" pubdate data-updated="true">May 24<span>th</span>, 2004</time>
+        
+         | <a href="/wordpress-plugin-time-since/index.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><img src="/images/media_httpmanalangcomwpcontenttimesincepreviewgif_iHrpgxjkipvgCmb.gif" alt="WordPress Plugin: Time Since" />If you read <a href="http://simon.incutio.com/">Simon Willison&#8217;s Weblog</a>, you&#8217;re probably familiar with his <code>time_since()</code> PHP function (which was actually <a href="http://blog.natbat.co.uk/archive/2003/Jun/14/time_since">written by his girlfriend</a>).  This allows him to display the time elapsed since an entry was published.  I took this code almost verbatim and created my first WordPress plugin.  Here it is:
+
+<a href="http://manalang.com/wp-content/time_since.txt" title="Time Since Plugin">Time Since Plugin</a>
+
+Download and save the file above as time_since.php into your<code>/wp-content/plugins</code> directory.  Then within WordPress, go to the Plugin&#8217;s section of your weblog admin and activate the Time Since plugin.
+
+This plugin will wrap any date or time (<code>the_date()</code> or <code>the_time()</code>) with an anchor element containing the elapsed time since the entry was published as a title attribute.  This allows a user to hover over a date or time and see the elapsed time.
+
+<em><strong>Update:</strong> A few people have reported a problem with getting the exact elapsed time to calculate.  I suspect this has something to do with a host server&#8217;s time (typically set to the local time) varying from the entry post&#8217;s time adjusted for the timezone.  It works on this site since my host server&#8217;s time is the same as my weblog&#8217;s timezone adjustment configuration.  I&#8217;ll have to find a fix soon.  Just know that this is a known issue.  Thanks to those who reported it.</em>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/20/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/18/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/homewood/index.html">Homewood</a>
+      </li>
+    
+      <li class="post">
+        <a href="/i-really-need-a-corona/index.html">I really need a Corona</a>
+      </li>
+    
+      <li class="post">
+        <a href="/i-need-a-corona/index.html">I need a Corona</a>
+      </li>
+    
+      <li class="post">
+        <a href="/day-3-in-paradise/index.html">Day 3 in Paradise</a>
+      </li>
+    
+      <li class="post">
+        <a href="/summer-in-homewood/index.html">Summer in Homewood</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Github Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/manalang">@manalang</a> on Github
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'manalang',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmanalan", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmanalan" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @rmanalan</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2011 - Rich Manalang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'manalang';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
